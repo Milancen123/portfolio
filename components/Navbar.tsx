@@ -71,8 +71,14 @@ const skills = [
     name:"TypeScript"
   }
 ];
+interface NavbarProps {
+  setQuickAction:(action:string) => void;
+};
 
-export function Navbar() {
+export function Navbar({setQuickAction}:NavbarProps) {
+  const handleQuickAction = (action: string) => {
+    setQuickAction(action);
+  }
   return (
     <div className=" bg-gradient-to-r from-[#09080b5b]  to-[#06040b45] backdrop-blur-xs z-2 top-0 sticky">
         <div className="flex justify-between items-center border-b-2 border-gray-900 px-[5%] md:py-[30px] py-[1%]">
@@ -98,11 +104,11 @@ export function Navbar() {
                     <div className="flex flex-col gap-8 p-[5%]">
                         <div className="flex flex-col gap-3">
                             <h1 className="text-md text-gray-400 font-manrope">QUICK ACTIONS</h1>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-2 justify-center">
                                 {actions.map((elem)=>{
                                     const Icon = elem.icon;
                                     return (
-                                    <div key={elem.name} className="flex gap-2 items-center p-2 border-2 border-[rgba(255,255,255,0)] hover:border-[#4d0e3bf5] rounded-2xl cursor-pointer hover:bg-[#4d0e3b17] text-lg text-gray-200 font-semibold">
+                                    <div key={elem.name} className="flex gap-2 items-center p-2 border-2 border-[rgba(255,255,255,0)] hover:border-[#4d0e3bf5] rounded-2xl cursor-pointer hover:bg-[#4d0e3b17] text-lg text-gray-200 font-semibold" onClick={()=>handleQuickAction(elem.name)}>
                                         <Icon className="w-5 h-5"/>
                                         <span>{elem.name}</span>
                                     </div>

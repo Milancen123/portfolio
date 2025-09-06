@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { InputMessage } from "./InputMessage"
 import { MessageScreen } from "./MessageScreen"
 import { Button } from "./ui/button"
@@ -31,7 +32,27 @@ const actions=[
     name:"LinkedIn"
   }
 ];
-export function Chat() {
+
+
+interface ChatIntefaceProps{
+  quickAction:string;
+  setQuickAction:(action:string) => void;
+}
+
+interface ChatMessage {
+  message: string;
+  ai: boolean;
+  Msgtype:string;
+}
+
+
+export function Chat({quickAction, setQuickAction}:ChatIntefaceProps) {
+    const [messages, setMessage] = useState<ChatMessage[]>([]);
+    const handleQuickAction = (action:string) => {
+    setQuickAction(action);
+  }
+
+  console.log("when lifted the state: ", messages);
   return (
     <div className=" md:flex-3 w-full flex-col md:h-full h-[100%] rounded-2xl bg-gradient-to-r from-[#201931b8]  to-[#161122b0] backdrop-blur-xs hover:shadow-xl hover:shadow-[#201931]/60">
         <div className="hidden h-[10%] border-b-2 border-gray-900 md:flex items-center justify-between p-[2%]">
@@ -44,17 +65,17 @@ export function Chat() {
             </Button>
         </div>
         <div className="h-[85%] md:h-[80%] overflow-auto">
-            <MessageScreen />
+            <MessageScreen quickAction={quickAction} messages={messages} setMessage={setMessage}/>
         </div>
         <div className="h-full w-full md:h-[10%] border-t-2 border-gray-900 p-[2%] md:flex items-center  justify-center">
-            <InputMessage />     
+            <InputMessage messages={messages} setMessage={setMessage} />     
             <div className="flex flex-wrap justify-evenly md:hidden">
                 {actions.map((elem)=>{
                     const Icon = elem.icon;
                     return (
-                    <div key={elem.name} className="flex justify-evenly gap-1 items-center p-2 border-2 border-[rgba(255,255,255,0)] hover:border-[#4d0e3bf5] rounded-2xl cursor-pointer hover:bg-[#4d0e3b17]">
-                        <Icon className="w-5 h-5"/>
-                    </div>
+                      <div key={elem.name} className="flex justify-evenly gap-1 items-center p-2 border-2 border-[rgba(255,255,255,0)] hover:border-[#4d0e3bf5] rounded-2xl cursor-pointer hover:bg-[#4d0e3b17]" onClick={()=>handleQuickAction(elem.name)}>
+                          <Icon className="w-5 h-5"/>
+                      </div>
                     )
                 })}
             </div>       
