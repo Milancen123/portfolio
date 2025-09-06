@@ -32,7 +32,7 @@ export function Message({message,Msgtype, isTyping, ai, setMessage, messages}:me
   
   return (<>
     {Msgtype === "text" && (
-      <div className={`px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] flex flex-col gap-2 ${ai ? 'self-start' : 'self-end'} ${ai ? 'bg-[#0b0e14]' : 'bg-[#7A6EFF]'}`}>
+      <div className={`px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] flex flex-col gap-2 ${ai ? 'self-start' : 'self-end'} ${ai ? 'bg-[#0b0e14]' : 'bg-[#7A6EFF]'} animate-pop`}>
         <div>{message}</div>
         <div>
           <h1 className={`text-xs ${ai ? 'text-gray-400' : 'text-gray-200'}`}>{time}</h1>
@@ -66,7 +66,7 @@ export function Message({message,Msgtype, isTyping, ai, setMessage, messages}:me
     
     {Msgtype === "isTyping" && (
       <div className={`px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] flex flex-col gap-2 ${ai ? 'self-start' : 'self-end'} ${ai ? 'bg-[#0b0e14]' : 'bg-[#7A6EFF]'} animate-pulse`}>
-        <div className="flex gap-3"><LoaderCircle className="animate-spin"/>Milan's AI is thinking...</div>
+        <div className="flex gap-3"><LoaderCircle className="animate-spin"/>Milan&apos;s AI is thinking...</div>
         <div>
           <h1 className={`text-xs ${ai ? 'text-gray-400' : 'text-gray-200'}`}>{time}</h1>
         </div>
