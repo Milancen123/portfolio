@@ -2,6 +2,7 @@
 
 import { Badge } from "./ui/badge";
 import { ExternalLink } from 'lucide-react';
+import { useEffect, useState } from "react";
 import {
     Github,
     Code,
@@ -22,7 +23,14 @@ const githubStats = {
 
 
 export function Resume() {
-    return <div className="flex flex-col gap-10 px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] w-[100%] md:w-[50%]">
+    const [animate, setAnimate] = useState(true);
+    
+      useEffect(()=>{
+        const t = setTimeout(() => setAnimate(false), 300); 
+        return () => clearTimeout(t);
+      }, []);
+    
+    return <div className={`flex flex-col gap-10 px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] w-[100%] md:w-[50%] ${animate && 'animate-pop'}`}>
         <div className="flex justify-between">
             <h1 className="text-xl font-semibold">Professional Resume</h1>
             <a

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Projects } from "./Projects";
 import { GitHub } from "./GitHub";
 import { Resume } from "./Resume";
@@ -21,9 +21,21 @@ interface messageProps {
     ai:boolean;
     setMessage?: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
     messages?: ChatMessage[];
+    animatePop:boolean;
 };
 
-export function Message({message,Msgtype, isTyping, ai, setMessage, messages}:messageProps) {
+export function Message({message,Msgtype, isTyping, ai, setMessage, messages, animatePop}:messageProps) {
+  
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(()=>{
+    const t = setTimeout(() => setAnimate(false), 300); 
+    return () => clearTimeout(t);
+  }, []);
+
+  
+
+  
   const time = new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
@@ -32,7 +44,7 @@ export function Message({message,Msgtype, isTyping, ai, setMessage, messages}:me
   
   return (<>
     {Msgtype === "text" && (
-      <div className={`px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] flex flex-col gap-2 ${ai ? 'self-start' : 'self-end'} ${ai ? 'bg-[#0b0e14]' : 'bg-[#7A6EFF]'} animate-pop`}>
+      <div className={`${animate && 'animate-pop'} px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] flex flex-col gap-2 ${ai ? 'self-start' : 'self-end'} ${ai ? 'bg-[#0b0e14]' : 'bg-[#7A6EFF]'}`}>
         <div>{message}</div>
         <div>
           <h1 className={`text-xs ${ai ? 'text-gray-400' : 'text-gray-200'}`}>{time}</h1>

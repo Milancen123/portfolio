@@ -10,6 +10,7 @@ import {
     Mail,
     Linkedin
 } from "lucide-react"
+import { useEffect, useState } from "react";
 const projects = [
     {
         title: "E-commerce Platform",
@@ -84,10 +85,16 @@ function Project({ title, description, tags, demoURL, githubCode, image }: Proje
 
 
 export function Projects() {
+    const [animate, setAnimate] = useState(true);
+    
+      useEffect(()=>{
+        const t = setTimeout(() => setAnimate(false), 300); 
+        return () => clearTimeout(t);
+      }, []);
+    
 
-
-    return <div className="flex flex-col gap-3 ">
-        {projects.map((project) => (
+    return <div className={`flex flex-col gap-3 ${animate && 'animate-pop'}`}>
+        {projects.map((project,index) => (
             <Project
                 title={project.title}
                 description={project.description}
@@ -95,7 +102,7 @@ export function Projects() {
                 demoURL={project.demoURL}
                 githubCode={project.githubCode}
                 image={project.image}
-                key={project.title + Math.random()}
+                key={index}
             />
         ))}
     </div>

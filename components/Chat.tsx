@@ -43,6 +43,7 @@ interface ChatMessage {
   message: string;
   ai: boolean;
   Msgtype:string;
+  animate?:boolean;
 }
 
 

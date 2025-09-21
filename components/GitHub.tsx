@@ -11,7 +11,7 @@ import {
 
 import { Star } from 'lucide-react';
 import { GitBranch } from 'lucide-react';
-
+import { useEffect, useState } from "react";
 
 const githubStats = {
     repositories: 52,
@@ -19,7 +19,14 @@ const githubStats = {
 }
 
 export function GitHub() {
-    return <div className="flex flex-col gap-10 px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] w-[100%] md:w-[50%]">
+    const [animate, setAnimate] = useState(true);
+
+  useEffect(()=>{
+    const t = setTimeout(() => setAnimate(false), 300); 
+    return () => clearTimeout(t);
+  }, []);
+
+    return <div className={`${animate && 'animate-pop'} flex flex-col gap-10 px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] w-[100%] md:w-[50%]`}>
         <div className="flex justify-between w-full items-center">
             <h1 className="text-xl font-semibold">GitHub Profile</h1>
             <Badge className="rounded-xl border-1 border-gray-400 text-md hover:bg-gray-200 hover:text-black cursor-pointer ">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Message } from "./Message"
 import { Projects } from "./Projects";
 
@@ -15,17 +15,27 @@ interface ChatMessage {
   message: string;
   ai: boolean;
   Msgtype:string;
+  animate?:boolean;
 }
 
 export function MessageScreen({quickAction, messages, setMessage}:MessageScreenProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  
   useEffect(()=>{
     setMessage([...messages, {message:"Hi! I'm Milan's AI assistant. I can help you explore his portfolio. Want to see his projects, resume, or GitHub?", ai:true, Msgtype: "text",}]);
     if(quickAction){
       setMessage([...messages, {message:"What are Milan's skills", ai:false, Msgtype: "text",}]);
     }
     console.log(messages);
-  }, [])
+  }, []);
+
+
+  useEffect(()=>{
+    //scroll to the bottom of the messagescreen whenever new message is added in the queue
+    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages]);
 
   useEffect(()=>{
 
@@ -60,11 +70,12 @@ export function MessageScreen({quickAction, messages, setMessage}:MessageScreenP
   }, [quickAction]);
 
   return (
-    <div className="flex flex-col p-[2%] gap-5 h-full overflow-y-auto ">
-        {messages?.map((message)=>(
-         <div className="flex flex-col gap-5" key={Math.random()}>
-            <Message message={message.message} Msgtype={message.Msgtype} ai={message.ai} key={message.message + Math.random()}/>
+    <div className="flex flex-col p-[2%] gap-5 h-full overflow-y-auto" ref={containerRef}>
+        {messages?.map((message, index)=>(
+         <div className="flex flex-col gap-5" key={index}>
+            <Message message={message.message} Msgtype={message.Msgtype} ai={message.ai} animatePop={index === messages.length - 1}/>
           </div>
         ))}
+        <div ref={bottomRef} />
     </div>
 )}

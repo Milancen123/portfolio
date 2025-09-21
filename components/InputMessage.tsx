@@ -53,7 +53,7 @@ const actions = [
   }
 ];
 
-interface InputMessageProps{
+interface InputMessageProps {
   messages: ChatMessage[];
   setMessage: React.Dispatch<React.SetStateAction<ChatMessage[]>>;
 };
@@ -61,13 +61,13 @@ interface InputMessageProps{
 interface ChatMessage {
   message: string;
   ai: boolean;
-  Msgtype:string;
+  Msgtype: string;
 }
 
 
-export function InputMessage({messages, setMessage}:InputMessageProps) {
+export function InputMessage({ messages, setMessage }: InputMessageProps) {
   const [isThinking, setIsThinking] = useState(false);
-  
+
   console.log(messages);
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -80,12 +80,14 @@ export function InputMessage({messages, setMessage}:InputMessageProps) {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
 
-    
+
     setMessage((prev) => [
       ...prev,
-      { message: values.message, ai:false, Msgtype:"text"}
+      { message: values.message, ai: false, Msgtype: "text"}
     ]);
     form.reset();
+
+    
 
     //while we are fetching the response maybe add a loading message from ai. ai is thinking 
     setMessage((prev) => [
@@ -148,7 +150,9 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
 - Do NOT explain your reasoning, process, or which section of the rules you are applying.
 - The visitor should NEVER see references like "since the message is...", "I will continue to section 2", or similar.
 - Only output the final response intended for the visitor.
-    `
+`;
+
+
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -172,7 +176,7 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
       assistantMessage += chunk;
 
     }
-    if(assistantMessage === "projects" || assistantMessage === "resume" || assistantMessage === "github" || assistantMessage === "linkedin") {
+    if (assistantMessage === "projects" || assistantMessage === "resume" || assistantMessage === "github" || assistantMessage === "linkedin") {
       setMessage((prev) => {
         const copyOfMessages = [...prev];
         copyOfMessages[copyOfMessages.length - 1] = {
@@ -181,7 +185,7 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
 
         return copyOfMessages;
       });
-    }else{
+    } else {
       setMessage((prev) => {
         const copyOfMessages = [...prev];
         copyOfMessages[copyOfMessages.length - 1] = {
@@ -192,7 +196,7 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
       });
     }
 
-    
+
 
     // setMessage((prev) => [
     //   ...prev,
