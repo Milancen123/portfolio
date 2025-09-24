@@ -5,6 +5,7 @@ import { Projects } from "./Projects";
 import { GitHub } from "./GitHub";
 import { Resume } from "./Resume";
 import { LoaderCircle } from 'lucide-react';
+import { LinkedIN } from "./LinkedIN";
 
 
 interface ChatMessage {
@@ -64,7 +65,7 @@ export function Message({message,Msgtype, isTyping, ai, setMessage, messages, an
 
     {Msgtype === "linkedin" && (
       <div>
-
+        <LinkedIN/>
       </div>
     )}
 

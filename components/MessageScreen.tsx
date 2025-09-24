@@ -61,8 +61,8 @@ export function MessageScreen({quickAction, messages, setMessage}:MessageScreenP
       } else if (quickAction.toLowerCase() === "linkedin") {
         setMessage(prev => [
           ...prev,
-          { message: "Show me Milan resume", ai: false, Msgtype: "text" },
-          { message: "Here is Milans resume :)", ai: true, Msgtype: "resume" }
+          { message: "Show me Milan LinkedIn account", ai: false, Msgtype: "text" },
+          { message: "Here is Milans LinkedIn :)", ai: true, Msgtype: "linkedin" }
         ]);
       }
 
