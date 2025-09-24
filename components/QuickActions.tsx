@@ -3,7 +3,8 @@ import {
   Github,
   Code,
   Mail,
-  Linkedin
+  Linkedin,
+  BookOpen
 } from "lucide-react"
 
 const actions=[

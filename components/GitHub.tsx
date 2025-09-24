@@ -6,7 +6,8 @@ import {
     Github,
     Code,
     Mail,
-    Linkedin
+    Linkedin,
+    Rss 
 } from "lucide-react"
 
 import { Star } from 'lucide-react';

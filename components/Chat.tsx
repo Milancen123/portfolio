@@ -53,7 +53,6 @@ export function Chat({quickAction, setQuickAction}:ChatIntefaceProps) {
     setQuickAction(action);
   }
 
-  console.log("when lifted the state: ", messages);
   return (
     <div className=" md:flex-3 w-full flex-col md:h-full h-[100%] rounded-2xl bg-gradient-to-r from-[#201931b8]  to-[#161122b0] backdrop-blur-xs hover:shadow-xl hover:shadow-[#201931]/60">
         <div className="hidden h-[10%] border-b-2 border-gray-900 md:flex items-center justify-between p-[2%]">
