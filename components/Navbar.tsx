@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Menu, Rss } from 'lucide-react';;
+import { Book, BookOpen, Menu, Rss } from 'lucide-react';;
 import {
   Drawer,
   DrawerClose,
@@ -81,7 +81,7 @@ export function Navbar({ setQuickAction }: NavbarProps) {
   }
   return (
     <div className=" bg-gradient-to-r from-[#09080b5b]  to-[#06040b45] backdrop-blur-xs z-2 top-0 sticky">
-      <div className="flex justify-between  border-b-2 border-gray-900 px-[5%] md:py-[30px] py-[1%]">
+      <div className="flex justify-between items-center border-b-2 border-gray-900 px-[5%] md:py-[30px] py-[1%]">
         <Link
           href="/"
           className="flex items-center gap-2"
@@ -97,8 +97,8 @@ export function Navbar({ setQuickAction }: NavbarProps) {
         </Link>
         <a href="https://blog.milannikolic.dev" target="_blank" className=" hidden md:block ">
             <Badge className="rounded-2xl border-1 border-gray-400 text-md font-semibold hover:bg-gray-200 hover:text-black cursor-pointer ">
-                <Rss/>
-                Visit blog
+                <BookOpen/>
+                Read my Blog
             </Badge>
         </a>
         <div className="block md:hidden">
@@ -109,6 +109,12 @@ export function Navbar({ setQuickAction }: NavbarProps) {
                 <DrawerTitle className="text-2xl">Menu</DrawerTitle>
               </DrawerHeader>
               <div className="flex flex-col gap-8 p-[5%]">
+                <div className="flex flex-col gap-3">
+                  <a href="https://blog.milannikolic.dev" target="_blank" className="flex gap-2">
+                    <BookOpen />
+                    <h1 className="text-lg text-gray-200 font-semibold">Read my Blog</h1>
+                  </a>
+                </div>
                 <div className="flex flex-col gap-3">
                   <h1 className="text-md text-gray-400 font-manrope">QUICK ACTIONS</h1>
                   <div className="flex flex-col gap-2 justify-center">

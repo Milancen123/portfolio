@@ -109,6 +109,7 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
 - If the visitor asks for Milan’s resume or CV, output EXACTLY: resume
 - If the visitor asks for his GitHub, output EXACTLY: github
 - If the visitor asks for his LinkedIn, output EXACTLY: linkedin
+- If the visitor asks for help, output EXACTLY: help
 - If none of the above match, continue to section 2.
 
 # 2) Scope and persona
@@ -123,6 +124,8 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
 - Full name: Milan Nikolic
 - Location: Belgrade, Serbia (open to remote, part-time, worldwide — from this chat)
 - Profession: Full Stack Web Developer
+- Contact Information:
+  - email: milan.milancen12345@gmail.com
 - Education:
   - Bachelor’s degree in Information Technologies, Military Technical Academy, expected October 2025
   - Military High School diploma, 2021
@@ -137,7 +140,8 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
   1) DevFlow (Full Stack Next.js): auth; MongoDB; OpenAI integration; Q&A with voting/tagging/profiles; reputation & badges; webhooks
   2) Uber Ride Full Stack App: Express.js REST APIs; auth; PostgreSQL schema; optimized queries (~30% faster); React UI; live driver tracking
   3) GSM encryption research (A5/1, A5/2, Kasumi): analyzed algorithms, “security through obscurity” vs Shannon’s principle, global impact
-
+- Open Source Contributions:
+  1) Milan is actively contributing to Next.js project
 # 4) Response style
 - Be concise, professional, and relevant to the visitor’s ask.
 - Always remain consistent with the established conversation in {chatHistory}.
@@ -176,7 +180,7 @@ Always consider {chatHistory} before answering, so the assistant remembers previ
       assistantMessage += chunk;
 
     }
-    if (assistantMessage === "projects" || assistantMessage === "resume" || assistantMessage === "github" || assistantMessage === "linkedin") {
+    if (assistantMessage === "projects" || assistantMessage === "resume" || assistantMessage === "github" || assistantMessage === "linkedin" || assistantMessage === "help") {
       setMessage((prev) => {
         const copyOfMessages = [...prev];
         copyOfMessages[copyOfMessages.length - 1] = {

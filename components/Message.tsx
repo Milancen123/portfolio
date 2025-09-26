@@ -6,6 +6,7 @@ import { GitHub } from "./GitHub";
 import { Resume } from "./Resume";
 import { LoaderCircle } from 'lucide-react';
 import { LinkedIN } from "./LinkedIN";
+import { Help } from "./Help";
 
 
 interface ChatMessage {
@@ -75,7 +76,11 @@ export function Message({message,Msgtype, isTyping, ai, setMessage, messages, an
       </div>
     )}
 
-
+    {Msgtype === "help" && (
+      <div>
+          <Help/>
+      </div>
+    )}
     
     {Msgtype === "isTyping" && (
       <div className={`px-5 py-4 rounded-2xl font-manrope bg-[#0b0e14] flex flex-col gap-2 ${ai ? 'self-start' : 'self-end'} ${ai ? 'bg-[#0b0e14]' : 'bg-[#7A6EFF]'} animate-pulse`}>
